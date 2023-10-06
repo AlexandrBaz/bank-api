@@ -1,0 +1,20 @@
+html { max-width: 920px; margin: auto; padding: 0 20px; position: relative; }
+body { margin: 5px;padding: 0; font-size: 16px; font-family: 'Open Sans', sans-serif; background: #fff; color: #6b6a6a; }
+strong { font-weight: 700; }
+select, input, textarea, option { padding: 0 5px 0 5px; margin: 5px 0 5px 0; font-size: 14px; font-family: 'Open Sans', sans-serif; color: #6b6a6a; outline: none; }
+a { color: #43b9f6; cursor: pointer; outline: none; text-decoration: none; }
+a:hover{ color: #333; transition: 0.3s ease-out; }
+.br { clear: both; height: 0;overflow: hidden; }
+.form .form-button { text-align: center; margin: 0 10px 15px 10px; }
+.form .form-button .isubmit { background: #55c0f7; border: 0; border-radius: 4px; color: #fff; font-weight: 400; padding: 12px 60px; text-transform: uppercase; font-size: 20px; }
+.form .form-button .isubmit:hover { background-color: rgba(0,191,243,0.6); transition: 0.3s ease-out; }
+.pagination {margin: 10px auto; text-align: center; font-size: 12px; padding: 10px;}
+.pagination a{display: inline-block; margin: 5px 5px; text-align: center; border-radius: 50%; padding: 10px; background: #fff; color: #666; max-width: 10px ; max-height: 10px; line-height: 8px;border: 1px solid #666;}
+.pagination a.active{background-color: lightgray; color: white}
+ul li {padding-bottom: 10px}
+table {width: 100%}
+td {padding: 0 10px 5px 10px; text-align: center;}
+.profile td {padding: 0 10px 5px 10px; text-align: left; width: 45%}
+.profile {margin: 0 5px 0 5px;}
+.profile input{width: 80%}
+.active {color: darkorange}

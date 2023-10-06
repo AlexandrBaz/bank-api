@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/style.css" media="screen">
+<head>
+  <meta charset="UTF-8">
+  <title>Banking</title>
+</head>
+<body>
+<div>Welcome to Banking</div>
+<form th:method="POST" th:action="@{/create}" th:object="${userDTO}" class="profile">
+  <table>
+    <tr>
+      <td colspan="2" style="text-align: center">
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="name">Enter your name</label></td>
+      <td><input type="text" th:field="*{name}" id="name"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center">
+        <div style="color: red" th:if="${#fields.hasErrors('pinCode')}" th:errors="*{pinCode}">pinCode
+          Error
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="pinCode">Enter your pin code</label></td>
+      <td><input type="password" th:field="*{pinCode}" id="pinCode"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" ><input type="submit" value="Create account"/></td>
+    </tr>
+  </table>
+</form>
+<div th:if="${accountsDTOList != null}">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Account number</th>
+      <th>Account balance</th>
+      <th></th>
+    </tr>
+    <tr th:each="acountsDTO : ${accountsDTOList}">
+      <td th:text="${acountsDTO.getName}" style="text-align: left">Name</td>
+      <td th:text="${acountsDTO.getAccountNumber()}">Account Number</td>
+      <td th:text="${acountsDTO.getBalance()}">Balance</td>
+      <td>
+        <form th:method="GET" th:action="@{/user/{id}(id=${acountsDTO.getName()})}">
+          <input type="submit" value="enter o account"/>
+        </form>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

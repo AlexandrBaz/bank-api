@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/style.css" media="screen">
+<head>
+  <meta charset="UTF-8">
+  <title>User operation</title>
+</head>
+<body>
+<div>
+  <table>
+    <tr>
+      <td style="text-align: left">User name</td>
+      <td style="text-align: left">User account number</td>
+      <td style="text-align: left">User balance</td>
+    </tr>
+    <tr>
+      <td th:text="${accountDTO.getName()}" style="text-align: left">User name</td>
+      <td th:text="${accountDTO.getAccountNumber()}" style="text-align: left">User name</td>
+      <td th:text="${accountDTO.getBalance()}" style="text-align: left">User name</td>
+    </tr>
+  </table>
+</div>
+<hr>
+<h2>ADD funds to account</h2>
+<form th:method="PATCH" th:action="@{/add-funds-{id}(id=${accountDTO.getName()})}" th:object="${addFundsDTO}" class="profile" >
+  <table >
+    <tr>
+      <td colspan="2" style="text-align: center" >
+        <div style="color: red" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">amount Error</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="amount">Enter amount</label></td>
+      <td><input type="text" th:field="*{amount}" id="amount"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" ><input type="submit" value="Add funds"/></td>
+    </tr>
+  </table>
+</form>
+<hr>
+<h2>Withdrawal funds</h2>
+<form th:method="PATCH" th:action="@{/withdraw-funds/{id}(id=${accountDTO.getName()})}" th:object="${withdrawDTO}" class="profile" >
+  <table >
+    <tr>
+      <td colspan="2" style="text-align: center" >
+        <div style="color: red" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">amount Error</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="withdrawAmount">Enter amount</label></td>
+      <td><input type="text" th:field="*{amount}" id="withdrawAmount"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center" >
+        <div style="color: red" th:if="${#fields.hasErrors('pinCode')}" th:errors="*{pinCode}">pinCode Error</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="pinCode">Enter your Pin Code</label></td>
+      <td><input type="text" th:field="*{pinCode}" id="pinCode"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" ><input type="submit" value="Withdrawal funds"/></td>
+    </tr>
+  </table>
+</form>
+<hr>
+<h2>Transfer funds to another account</h2>
+<form th:method="PATCH" th:action="@{/transfer-funds/{id}(id=${accountDTO.getName()})}" th:object="${transferDTO}" class="profile" >
+  <table >
+    <tr>
+      <td colspan="2" style="text-align: center" >
+        <div style="color: red" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">amount Error</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="amountToTransfer2">Enter amount to transfer</label></td>
+      <td><input type="text" th:field="*{amount}" id="amountToTransfer2"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center" >
+        <div style="color: red" th:if="${#fields.hasErrors('pinCode')}" th:errors="*{pinCode}">pinCode Error</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="pinCodeTrans">Enter your Pin Code</label></td>
+      <td><input type="text" th:field="*{pinCode}" id="pinCodeTrans"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center" >
+        <div style="color: red" th:if="${#fields.hasErrors('accountTo')}" th:errors="*{accountTo}">accountTo Error</div>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="accountTo">Enter account number</label></td>
+      <td><input type="text" th:field="*{accountTo}" id="accountTo" /></td>
+
+    </tr>
+    <tr th:object="${transferDTO.setAccountFrom(accountDTO.getAccountNumber())}">
+      <td colspan="2" ><input type="submit" value="Withdrawal funds"/></td>
+    </tr>
+  </table>
+</form>
+<div th:if="${accountDTOList != null}">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Account number</th>
+      <th>Account balance</th>
+    </tr>
+    <tr th:each="acountDTO : ${accountDTOList}">
+      <td th:text="${acountDTO.getName}" style="text-align: left">Name</td>
+      <td th:text="${acountDTO.getAccountNumber()}">Account Number</td>
+      <td th:text="${acountDTO.getBalance()}">Balance</td>
+    </tr>
+  </table>
+</div>
+<hr>
+<div><a href="/">Back</a></div>
+</body>
+</html>
+
+
